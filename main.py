@@ -1,11 +1,36 @@
-import csv, os, os.path as path, urllib.request as req, random
+import csv
+import os
+import os.path as path
+import urllib.request as req
+import random
 from typing import List
 from canivete import tit, cls, rinput
 from funcs import *
 
 
-data_cont = [[],[]]
+def abre(arg='data', slot=0):
+    """
+    abre arquivos .csv somente para este jogo
+    :param arg: nome do .csv que será aberto
+    :param slot: não faço ideia
+    """
+    with open(f'{arg}.csv', encoding='utf-8') as csvfile:
+        data = csv.reader(csvfile, delimiter=',')
+        #print(data)
+        #cls()
+        cont: int = -1
+        for row in data:
+            cont += 1
+            data_cont[slot].append({'nivel' : row[0], 'nome' : row[1], 'pv' : row[2], 'pvt' : row[2], 'pa' : row[3], 's' : row[4]})
+            if row[0] != '-':
+                for a in ('nivel', 'pv', 'pvt', 'pa', 's'):
+                    data_cont[slot][cont][a] = int(data_cont[slot][cont][a])
+            else:
+                pass
+    csvfile.close()
 
+
+data_cont = [[],[]]
 J1 = [input('Jogador 1, qual o teu nome?').strip()]
 J2 = [input('Jogador 2, qual o teu nome?').strip()]
 slot = False
