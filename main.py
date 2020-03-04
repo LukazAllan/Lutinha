@@ -4,7 +4,7 @@ from canivete import tit, cls, rinput
 
 
 data_cont = [[],[]]
-def abre(arg='data2', slot=0):
+def abre(arg='data', slot=0):
     """
     abre arquivos .csv somente para este jogo
     :param arg: nome do .csv que será aberto
